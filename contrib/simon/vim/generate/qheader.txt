@@ -1,0 +1,22 @@
+" Vim syntax file
+" Language: q
+" Maintainer: Simon Garland <simon@kx.com>
+" Last Change: 2010.08.21
+
+" Remove any old syntax stuff hanging around
+syn clear
+
+if !exists("main_syntax")
+ let main_syntax = 'q'
+endif
+
+" Read the k syntax to start with
+source <sfile>:p:h/k.vim
+
+" all _ in names in q
+set iskeyword=@,_,48-57,.
+
+" Identifier tweak to allow _ in identifiers
+syn match qIdentifier "\<\a\w*\>"
+syn match qGlobal "\<\u[A-Z0-9_]*\>"
+

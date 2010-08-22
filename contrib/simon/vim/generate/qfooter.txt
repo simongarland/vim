@@ -1,0 +1,19 @@
+
+" Include
+syn match qLang "^k)"
+syn match qError "^q)"
+
+if !exists("did_q_syntax_inits")
+ let did_q_syntax_inits = 1
+ hi link qError kError
+ hi link qFunction kFunction
+ hi link qGlobal kGlobal 
+ hi link qIdentifier kIdentifier
+ hi link qLang kLang
+ endif
+
+let b:current_syntax = "q"
+
+if main_syntax == 'q'
+ unlet main_syntax
+endif

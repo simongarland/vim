@@ -1,0 +1,69 @@
+" Vim syntax file
+" Language: k
+" Maintainer: Simon Garland <simon@kx.com>
+" Last Change: 2010.08.21
+
+" Remove any old syntax stuff hanging around
+syn clear
+
+if !exists("main_syntax")
+ let main_syntax = 'k'
+endif
+
+setlocal comments=:/,://
+
+" exclude _ in names for k
+syn case match
+set iskeyword=@,^_,48-57,.
+
+" Operator
+syn match kOperator /[/\']/
+syn match kOperator /[/\']:/
+
+" highlight Todo and friends in comments
+syn keyword kTodo TODO FIXME FIX XXX NOTE GOTCHA contained
+
+" Exit
+syn match kExit "^\\\\" contained
+
+" Comments, trailing, wholeline and multi-line
+syn region kComment start="^\s*/" end="$" keepend excludenl contains=kTodo
+syn region kComment start="\s/" end="$" keepend excludenl contains=kTodo
+" multiline comment, bare \ means rest of file is comment
+syn region kComment start="^\\\\*\s*$" end="\%$" contains=kTodo,kExit
+" multiline comment start / .. end \ 
+syn region kComment start="^/\s*$" end="^\\\s*$" keepend excludenl contains=kTodo
+" emphasised comment
+syn region kSpecialComment start="^\s*//" end="$" keepend excludenl contains=kTodo
+syn region kSpecialComment start="\s//" end="$" keepend excludenl contains=kTodo
+
+" Numbers, dates etc 
+syn match kNumber "-\=\(\d\+\)\=\.\d*\(e[+-]\=\d\+\)\=[ef]\="
+syn match kNumber "-\=\d\+\(e[+-]\=\d\+\)\=[ijhfe]\="
+" Timestamp
+syn match kNumber "\d\{4}\.[01]\d\.[0123]\dT[012]\d\:[012345]\d:[012345]\d\(\.\d\+\)\="
+" Month 
+syn match kNumber "\d\{4}\.[01]\dm"
+" Time
+syn match kNumber "[012]\d:[012345]\d\(:[012345]\d\(\.\d\+\)\=\)\="
+" Hex
+syn match kNumber "0x\x*"
+
+" special functions 0: 1: 2: 
+syn match kFunction "\<[012]:"
+
+" Boolean
+syn match kBoolean /[01]\+b/
+
+" generic .?.* match - single letter reserved namespace
+" syn match kFunction /\.\a\.\a[a-zA-Z0-9]*/
+
+"Statement separator
+syn match kSeparator ";"
+
+" all the nulls and INFs 
+syn keyword kSpecial 0N 0Nd 0Ne 0Nh 0Nj 0Nm 0Nn 0Np 0Nt 0Nu 0Nv 0Nz 0W 0Wd 0Wj 0Wm 0Wn 0Wp 0Wt 0Wu 0Wv 0n 0w 0we 0wz
+
+" Identifiers not caught elsewhere 
+syn match kGlobal "\<\u[A-Z0-9]*\>"
+syn match kPlaceholder "\<[xyz]\>" 

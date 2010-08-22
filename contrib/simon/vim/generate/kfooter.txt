@@ -1,0 +1,111 @@
+
+" hardcode the .z. functions (no way to get them automatically)
+syn match qLib "\.z\.D"
+syn match qLib "\.z\.K"
+syn match qLib "\.z\.N"
+syn match qLib "\.z\.P"
+syn match qLib "\.z\.T"
+syn match qLib "\.z\.W"
+syn match qLib "\.z\.Z"
+syn match qLib "\.z\.a"
+syn match qLib "\.z\.b"
+syn match qLib "\.z\.d"
+syn match qLib "\.z\.exit"
+syn match qLib "\.z\.f"
+syn match qLib "\.z\.h"
+syn match qLib "\.z\.i"
+syn match qLib "\.z\.k"
+syn match qLib "\.z\.l"
+syn match qLib "\.z\.n"
+syn match qLib "\.z\.o"
+syn match qLib "\.z\.p"
+syn match qLib "\.z\.pc"
+syn match qLib "\.z\.pg"
+syn match qLib "\.z\.ph"
+syn match qLib "\.z\.pi"
+syn match qLib "\.z\.po"
+syn match qLib "\.z\.pp"
+syn match qLib "\.z\.ps"
+syn match qLib "\.z\.pw"
+syn match qLib "\.z\.q"
+syn match qLib "\.z\.s"
+syn match qLib "\.z\.t"
+syn match qLib "\.z\.ts"
+syn match qLib "\.z\.u"
+syn match qLib "\.z\.vs"
+syn match qLib "\.z\.w"
+syn match qLib "\.z\.x"
+syn match qLib "\.z\.z"
+
+syn match kIdentifier "\<\a[a-zA-Z0-9]*\>"
+
+" Conditional and similar constructs 
+syn keyword kConditional if
+syn match kConditional /$\[/me=e-1
+syn match kConditional /?\[/me=e-1
+syn match kConditional /'\[/me=e-1
+syn match kConditional /\.\[/me=e-1
+syn match kConditional /@\[/me=e-1
+
+" Repeat
+syn keyword kRepeat do while
+
+" in a k script q) and s) switch to other languages, k) is unnecessary 
+syn match kLang "^q)"
+syn match kLang "^s)"
+syn match kError "^k)"
+
+" symbols and specialcase file+connection handles
+syn match kSymbol "\(`\<[a-zA-Z0-9\.][a-zA-Z0-9_\.]*\>\)" 
+syn match kHandle "\`:\{1,2}\([0-9a-zA-Z\\/.]\+:\=\)\{1,4}"
+
+" attributes `p#, `g#, `s# and `u#
+syn match kPreproc /`[spgu]#/
+
+" highlight all the special names used when `XXX$ casting data 
+syn match kCast "\`\(boolean\|byte\|short\|int\|long\|real\|float\|char\|symbol\|timestamp\|month\|date\|datetime\|timespan\|time\|minute\|second\)\$\s*"
+syn match kCast "\`\(year\|week\|mm\|dd\|hh\|ss\|uu\)\$\s*"
+
+" system cmd
+syn match kSyscmd "^\\\<\([12abBcCdeflopPrsStTuvwWxz_]\|cd\|ts\)\>"
+
+" String and handle embedded tabs and newlines correctly 
+syn region kString start=+"+ skip=+\\\\\|\\"+ end=+"+ keepend excludenl matchgroup=None contains=kSpecialChar 
+syn match kSpecialChar "\\[abcfnrtv\\]" contained
+
+if !exists("did_k_syntax_inits")
+ let did_k_syntax_inits = 1
+ hi link kBoolean Boolean
+ hi link kCast TablineSel
+ hi link kComment Comment
+ hi link kConditional Conditional
+ hi link kContext Directory
+ hi link kError Error
+ hi link kExit WarningMsg
+ hi link kFunction Define
+ hi link kGlobal Constant
+ hi link kHandle TabLineSel
+ hi link kIdentifier Identifier
+ hi link kLang Pmenu
+ hi link kNumber Number
+ hi link kOperator Operator
+ hi link kPlaceHolder TabLineSel
+ hi link kPreproc kCast
+ hi link kPrimitive kFunction
+ hi link kRepeat kConditional
+ hi link kSeparator Separator
+ hi link kSpecial Special
+ hi link kSpecialChar SpecialChar
+ hi link kSpecialComment SpecialComment
+ hi link kString String
+ hi link kSyscmd PmenuSel
+ hi link kSymbol Typedef
+ hi link kTodo Todo
+ hi link qLib Keyword
+ endif
+
+let b:current_syntax = "k"
+
+if main_syntax == 'k'
+ unlet main_syntax
+endif

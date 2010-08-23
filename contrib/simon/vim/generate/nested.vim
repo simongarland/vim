@@ -1,5 +1,6 @@
 " modified from John Gilmore's original script
 " http://www.vim.org/scripts/script.php?script_id=1230
+"
 hi level1c ctermfg=brown guifg=RoyalBlue3 
 hi level2c ctermfg=Darkblue guifg=SeaGreen3 
 hi level3c ctermfg=darkgray guifg=DarkOrchid3

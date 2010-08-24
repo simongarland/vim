@@ -66,9 +66,9 @@ syn keyword kSpecial 0N 0Nd 0Ne 0Nh 0Nj 0Nm 0Nn 0Np 0Nt 0Nu 0Nv 0Nz 0W 0Wd 0Wj 0
 
 " Identifiers not caught elsewhere 
 syn match kGlobal "\<\u[A-Z0-9]*\>"
-syn match kPlaceholder "\<[xyz]\>" 
 " modified from John Gilmore's original script
 " http://www.vim.org/scripts/script.php?script_id=1230
+"
 hi level1c ctermfg=brown guifg=RoyalBlue3 
 hi level2c ctermfg=Darkblue guifg=SeaGreen3 
 hi level3c ctermfg=darkgray guifg=DarkOrchid3
@@ -529,6 +529,7 @@ syn match qLib "\.z\.x"
 syn match qLib "\.z\.z"
 
 syn match kIdentifier "\<\a[a-zA-Z0-9]*\>"
+syn match kPlaceholder "\<[xyz]\>" 
 
 " Conditional and similar constructs 
 syn keyword kConditional if
@@ -563,6 +564,8 @@ syn match kSyscmd "^\\\<\([12abBcCdeflopPrsStTuvwWxz_]\|cd\|ts\)\>"
 " String and handle embedded tabs and newlines correctly 
 syn region kString start=+"+ skip=+\\\\\|\\"+ end=+"+ keepend excludenl matchgroup=None contains=kSpecialChar 
 syn match kSpecialChar "\\[abcfnrtv\\]" contained
+" special singlechar string before $ 
+syn match kCast /"\a"\$/
 
 if !exists("did_k_syntax_inits")
  let did_k_syntax_inits = 1
@@ -580,7 +583,7 @@ if !exists("did_k_syntax_inits")
  hi link kLang Pmenu
  hi link kNumber Number
  hi link kOperator Operator
- hi link kPlaceHolder TabLineSel
+ hi link kPlaceholder Special
  hi link kPreproc kCast
  hi link kPrimitive kFunction
  hi link kRepeat kConditional

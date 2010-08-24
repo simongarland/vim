@@ -19,4 +19,4 @@ set iskeyword=@,_,48-57,.
 " Identifier tweak to allow _ in identifiers
 syn match qIdentifier "\<\a\w*\>"
 syn match qGlobal "\<\u[A-Z0-9_]*\>"
-
+syn match qPlaceholder "\<[xyz]\>"

@@ -10,6 +10,7 @@ if !exists("did_q_syntax_inits")
  hi link qGlobal kGlobal 
  hi link qIdentifier kIdentifier
  hi link qLang kLang
+ hi link qPlaceholder kPlaceholder
  endif
 
 let b:current_syntax = "q"

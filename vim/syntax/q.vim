@@ -19,7 +19,7 @@ set iskeyword=@,_,48-57,.
 " Identifier tweak to allow _ in identifiers
 syn match qIdentifier "\<\a\w*\>"
 syn match qGlobal "\<\u[A-Z0-9_]*\>"
-
+syn match qPlaceholder "\<[xyz]\>"
 syn keyword qFunction  aj
 syn keyword qFunction  aj0
 syn keyword qFunction  all
@@ -161,6 +161,7 @@ if !exists("did_q_syntax_inits")
  hi link qGlobal kGlobal 
  hi link qIdentifier kIdentifier
  hi link qLang kLang
+ hi link qPlaceholder kPlaceholder
  endif
 
 let b:current_syntax = "q"

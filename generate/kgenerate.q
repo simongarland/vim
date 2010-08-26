@@ -1,4 +1,4 @@
-lib:asc"syn match qLib \"",/:(string raze{d:get x;` sv'x,'1 _ key d}'[gf:` sv '`,'`,key `]),\:"\"";
+lib:asc"syn keyword qLib ",/:(ssr[;".";"\\."]each string raze{d:get x;` sv'x,'1 _ key d}'[gf:` sv '`,'`,key `]);
 kp:asc"syn keyword kPrimitive ",/:string .Q.res,`from`i;
 
 h:read0 `:kheader.txt;

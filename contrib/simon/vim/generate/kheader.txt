@@ -66,3 +66,4 @@ syn keyword kSpecial 0N 0Nd 0Ne 0Nh 0Nj 0Nm 0Nn 0Np 0Nt 0Nu 0Nv 0Nz 0W 0Wd 0Wj 0
 
 " Identifiers not caught elsewhere 
 syn match kGlobal "\<\u[A-Z0-9]*\>"
+

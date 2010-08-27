@@ -1,6 +1,12 @@
 
 " modified from John Gilmore's original script
 " http://www.vim.org/scripts/script.php?script_id=1230
+
+" lowkey initial ([ and {
+hi link level16c kIdentifier
+hi link levelp16c kIdentifier
+hi link crly16c kIdentifier
+
 if &bg == "dark"
 	hi level1c ctermfg=magenta guifg=green1 
 	hi level2c ctermfg=red guifg=springgreen1 
@@ -17,7 +23,7 @@ if &bg == "dark"
 	hi level13c ctermfg=yellow guifg=cyan1 
 	hi level14c ctermfg=green guifg=slateblue1 
 	hi level15c ctermfg=cyan guifg=magenta1
-	hi level16c ctermfg=magenta guifg=purple1 
+"	hi level16c ctermfg=magenta guifg=purple1 
 else
 	hi level1c ctermfg=darkmagenta guifg=olivedrab4 
 	hi level2c ctermfg=red guifg=green4 
@@ -34,7 +40,7 @@ else
 	hi level13c ctermfg=darkyellow guifg=paleturquoise3 
 	hi level14c ctermfg=darkgreen guifg=deepskyblue4 
 	hi level15c ctermfg=blue guifg=darkslateblue
-	hi level16c ctermfg=darkmagenta guifg=darkviolet 
+"	hi level16c ctermfg=darkmagenta guifg=darkviolet 
 endif
 syn region level1 matchgroup=level1c start=/\[/ end=/\]/ contains=TOP,level1,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11,level12,level13,level14,level15, level16,NoInParens
 syn region level2 matchgroup=level2c start=/\[/ end=/\]/ contains=TOP,level2,level3,level4,level5,level6,level7,level8,level9,level10,level11,level12,level13,level14,level15, level16,NoInParens
@@ -71,7 +77,7 @@ if &bg == "dark"
 	hi levelp13c ctermfg=yellow guifg=cyan1 
 	hi levelp14c ctermfg=green guifg=slateblue1 
 	hi levelp15c ctermfg=cyan guifg=magenta1
-	hi levelp16c ctermfg=magenta guifg=purple1 
+"	hi levelp16c ctermfg=magenta guifg=purple1 
 else
 	hi levelp1c ctermfg=darkmagenta guifg=olivedrab4 
 	hi levelp2c ctermfg=red guifg=green4 
@@ -88,7 +94,7 @@ else
 	hi levelp13c ctermfg=darkyellow guifg=paleturquoise3 
 	hi levelp14c ctermfg=darkgreen guifg=deepskyblue4 
 	hi levelp15c ctermfg=blue guifg=darkslateblue
-	hi levelp16c ctermfg=darkmagenta guifg=darkviolet 
+"	hi levelp16c ctermfg=darkmagenta guifg=darkviolet 
 endif
 syn region levelp1 matchgroup=levelp1c start=/(/ end=/)/ contains=TOP,levelp1,levelp2,levelp3,levelp4,levelp5,levelp6,levelp7,levelp8,levelp9,levelp10,levelp11,levelp12,levelp13,levelp14,levelp15, levelp16,NoInParens
 syn region levelp2 matchgroup=levelp2c start=/(/ end=/)/ contains=TOP,levelp2,levelp3,levelp4,levelp5,levelp6,levelp7,levelp8,levelp9,levelp10,levelp11,levelp12,levelp13,levelp14,levelp15, levelp16,NoInParens
@@ -125,7 +131,7 @@ if &bg == "dark"
 	hi crly13c ctermfg=yellow guifg=cyan1 
 	hi crly14c ctermfg=green guifg=slateblue1 
 	hi crly15c ctermfg=cyan guifg=magenta1
-	hi crly16c ctermfg=magenta guifg=purple1 
+"	hi crly16c ctermfg=magenta guifg=purple1 
 else
 	hi crly1c ctermfg=darkmagenta guifg=olivedrab4 
 	hi crly2c ctermfg=red guifg=green4 
@@ -142,7 +148,7 @@ else
 	hi crly13c ctermfg=darkyellow guifg=paleturquoise3 
 	hi crly14c ctermfg=darkgreen guifg=deepskyblue4 
 	hi crly15c ctermfg=blue guifg=darkslateblue
-	hi crly16c ctermfg=darkmagenta guifg=darkviolet 
+"	hi crly16c ctermfg=darkmagenta guifg=darkviolet 
 endif
 syn region crly1 matchgroup=crly1c start=/{/ end=/}/ contains=TOP,crly1,crly2,crly3,crly4,crly5,crly6,crly7,crly8,crly9,crly10,crly11,crly12,crly13,crly14,crly15, crly16,NoInParens
 syn region crly2 matchgroup=crly2c start=/{/ end=/}/ contains=TOP,crly2,crly3,crly4,crly5,crly6,crly7,crly8,crly9,crly10,crly11,crly12,crly13,crly14,crly15, crly16,NoInParens

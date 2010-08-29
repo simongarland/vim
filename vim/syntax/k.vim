@@ -10,6 +10,15 @@ if !exists("main_syntax")
  let main_syntax = 'k'
 endif
 
+" sync, even k functions can ramble..
+if main_syntax == 'k'
+ if exists("k_minlines")
+  exec "syn sync minlines=" . k_minlines
+ else
+  syn sync minlines=100
+ endif
+endif   
+
 setlocal comments=:/,://
 
 " exclude _ in names for k

@@ -101,6 +101,7 @@ syn keyword qFunction  pj
 syn keyword qFunction  plist
 syn keyword qFunction  prds
 syn keyword qFunction  prev
+syn keyword qFunction  prior
 syn keyword qFunction  rand
 syn keyword qFunction  rank
 syn keyword qFunction  ratios
@@ -141,6 +142,7 @@ syn keyword qFunction  views
 syn keyword qFunction  vs
 syn keyword qFunction  where
 syn keyword qFunction  wj
+syn keyword qFunction  wj1
 syn keyword qFunction  xasc
 syn keyword qFunction  xbar
 syn keyword qFunction  xcol

@@ -1,6 +1,6 @@
 Vim Support for kdb+
 
-Copy the files in the <vim> subdirectory to your vim home directory (probably $HOME/.vim except on window - there who knows …)
+Copy the files in the <vim> subdirectory to your vim home directory (probably $HOME/.vim except on windows - there who knows …)
 
 If you already have a filetype.vim then just insert the additional k & q lines.
 

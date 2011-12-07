@@ -76,6 +76,7 @@ syn keyword kSpecial 0N 0Nd 0Ne 0Nh 0Nj 0Nm 0Nn 0Np 0Nt 0Nu 0Nv 0Nz 0W 0Wd 0Wj 0
 " Identifiers not caught elsewhere 
 syn match kGlobal "\<\u[A-Z0-9]*\>"
 
+syn match kIdentifier "\<[a-zA-Z\.][a-zA-Z0-9\.]*\>"
 
 " modified from John Gilmore's original script
 " http://www.vim.org/scripts/script.php?script_id=1230
@@ -95,10 +96,10 @@ if &bg == "dark"
 	hi level9c ctermfg=green guifg=yellow1 
 	hi level10c ctermfg=cyan guifg=greenyellow 
 	hi level11c ctermfg=magenta guifg=green1
-	hi level12c ctermfg=red guifg=springgreen1 
+ 	hi level12c ctermfg=cyan guifg=magenta1
 	hi level13c ctermfg=yellow guifg=cyan1 
-	hi level14c ctermfg=green guifg=slateblue1 
-	hi level15c ctermfg=cyan guifg=magenta1
+	hi level14c ctermfg=red guifg=springgreen1 
+	hi level15c ctermfg=green guifg=slateblue1 
 "	hi level16c ctermfg=magenta guifg=purple1 
 else
 	hi level1c ctermfg=darkmagenta guifg=olivedrab4 
@@ -250,12 +251,14 @@ syn region crly13 matchgroup=crly13c start=/{/ end=/}/ contains=TOP,crly13,crly1
 syn region crly14 matchgroup=crly14c start=/{/ end=/}/ contains=TOP,crly14,crly15,crly16,NoInParens
 syn region crly15 matchgroup=crly15c start=/{/ end=/}/ contains=TOP,crly15,crly16,NoInParens
 syn region crly16 matchgroup=crly16c start=/{/ end=/}/ contains=TOP,crly16,NoInParens
+
 syn keyword kPrimitive abs
 syn keyword kPrimitive acos
 syn keyword kPrimitive asin
 syn keyword kPrimitive atan
 syn keyword kPrimitive avg
 syn keyword kPrimitive bin
+syn keyword kPrimitive by
 syn keyword kPrimitive cos
 syn keyword kPrimitive delete
 syn keyword kPrimitive div
@@ -322,6 +325,7 @@ syn keyword qLib \.Q\.fmt
 syn keyword qLib \.Q\.foo
 syn keyword qLib \.Q\.fp
 syn keyword qLib \.Q\.fs
+syn keyword qLib \.Q\.fsn
 syn keyword qLib \.Q\.ft
 syn keyword qLib \.Q\.fu
 syn keyword qLib \.Q\.gc
@@ -383,8 +387,9 @@ syn keyword qLib \.h\.data
 syn keyword qLib \.h\.eb
 syn keyword qLib \.h\.ec
 syn keyword qLib \.h\.ed
+syn keyword qLib \.h\.edsn
 syn keyword qLib \.h\.es
-syn keyword qLib \.h\.estr
+syn keyword qLib \.h\.ex
 syn keyword qLib \.h\.fram
 syn keyword qLib \.h\.ha
 syn keyword qLib \.h\.hb
@@ -402,6 +407,7 @@ syn keyword qLib \.h\.http
 syn keyword qLib \.h\.hu
 syn keyword qLib \.h\.hug
 syn keyword qLib \.h\.hy
+syn keyword qLib \.h\.iso8601
 syn keyword qLib \.h\.jx
 syn keyword qLib \.h\.logo
 syn keyword qLib \.h\.nbr
@@ -517,6 +523,7 @@ syn keyword qLib \.q\.pj
 syn keyword qLib \.q\.plist
 syn keyword qLib \.q\.prds
 syn keyword qLib \.q\.prev
+syn keyword qLib \.q\.prior
 syn keyword qLib \.q\.rand
 syn keyword qLib \.q\.rank
 syn keyword qLib \.q\.ratios
@@ -557,6 +564,7 @@ syn keyword qLib \.q\.views
 syn keyword qLib \.q\.vs
 syn keyword qLib \.q\.where
 syn keyword qLib \.q\.wj
+syn keyword qLib \.q\.wj1
 syn keyword qLib \.q\.xasc
 syn keyword qLib \.q\.xbar
 syn keyword qLib \.q\.xcol
@@ -577,7 +585,9 @@ syn match qLib "\.z\.T"
 syn match qLib "\.z\.W"
 syn match qLib "\.z\.Z"
 syn match qLib "\.z\.a"
+syn match qLib "\.z\.ac"
 syn match qLib "\.z\.b"
+syn match qLib "\.z\.c"
 syn match qLib "\.z\.d"
 syn match qLib "\.z\.exit"
 syn match qLib "\.z\.f"
@@ -605,8 +615,10 @@ syn match qLib "\.z\.vs"
 syn match qLib "\.z\.w"
 syn match qLib "\.z\.x"
 syn match qLib "\.z\.z"
+syn match qLib "\.z\.zd"
 
-syn match kIdentifier "\<\a[a-zA-Z0-9]*\>"
+"syn match kIdentifier "\<\a[a-zA-Z0-9]*\>"
+"syn match kIdentifier "\<[a-zA-Z\.][a-zA-Z0-9\.]*\>"
 syn match kPlaceholder "\<[xyz]\>" 
 
 " Conditional and similar constructs 
@@ -616,6 +628,9 @@ syn match kConditional /?\[/me=e-1
 syn match kConditional /'\[/me=e-1
 syn match kConditional /\.\[/me=e-1
 syn match kConditional /@\[/me=e-1
+
+" plist, view, global assign
+syn match Function /::/
 
 " Repeat
 syn keyword kRepeat do while
@@ -647,14 +662,14 @@ syn match kCast /"\a"\$/
 
 if !exists("did_k_syntax_inits")
  let did_k_syntax_inits = 1
- hi link kBoolean Boolean
- hi link kCast TablineSel
+ hi link kBoolean Number
+ hi link kCast Type
  hi link kComment Comment
  hi link kConditional Conditional
  hi link kContext Directory
  hi link kError Error
  hi link kExit WarningMsg
- hi link kFunction Define
+ hi link kFunction Statement
  hi link kGlobal Constant
  hi link kHandle TabLineSel
  hi link kIdentifier Identifier
@@ -673,7 +688,7 @@ if !exists("did_k_syntax_inits")
  hi link kSyscmd PmenuSel
  hi link kSymbol Typedef
  hi link kTodo Todo
- hi link qLib Keyword
+ hi link qLib Special
  endif
 
 let b:current_syntax = "k"

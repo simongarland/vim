@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: k
 " Maintainer: Simon Garland <simon@kx.com>
-" Last Change: 2010.08.21
+" Last Change: 2011.04.04
 
 " Remove any old syntax stuff hanging around
 syn clear
@@ -71,7 +71,10 @@ syn match kBoolean /[01]\+b/
 syn match kSeparator ";"
 
 " all the nulls and INFs 
-syn keyword kSpecial 0N 0Nd 0Ne 0Nh 0Nj 0Nm 0Nn 0Np 0Nt 0Nu 0Nv 0Nz 0W 0Wd 0Wj 0Wm 0Wn 0Wp 0Wt 0Wu 0Wv 0n 0w 0we 0wz
+syn keyword kSpecial 0N 0W 0n 0w
+syn match kSpecial "-0[wW]"
+syn match kSpecial "-0W[dehjmnptuvz]"
+syn match kSpecial "0[NW][dehjmnptuvz]"
 
 " Identifiers not caught elsewhere 
 syn match kGlobal "\<\u[A-Z0-9]*\>"

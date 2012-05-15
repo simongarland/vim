@@ -73,8 +73,10 @@ syn match kSeparator ";"
 " all the nulls and INFs 
 syn keyword kSpecial 0N 0W 0n 0w
 syn match kSpecial "-0[wW]"
-syn match kSpecial "-0W[dehjmnptuvz]"
-syn match kSpecial "0[NW][dehjmnptuvz]"
+syn match kSpecial "-0W[defhijmnptuvz]"
+syn match kSpecial "0[NW][defghijmnptuvz]"
+" GUIDs
+syn match kSpecial "[-[:xdigit:]]\{36}"
 
 " Identifiers not caught elsewhere 
 syn match kGlobal "\<\u[A-Z0-9]*\>"
@@ -590,6 +592,7 @@ syn match qLib "\.z\.Z"
 syn match qLib "\.z\.a"
 syn match qLib "\.z\.ac"
 syn match qLib "\.z\.b"
+syn match qLib "\.z\.bm"
 syn match qLib "\.z\.c"
 syn match qLib "\.z\.d"
 syn match qLib "\.z\.exit"
@@ -616,6 +619,7 @@ syn match qLib "\.z\.ts"
 syn match qLib "\.z\.u"
 syn match qLib "\.z\.vs"
 syn match qLib "\.z\.w"
+syn match qLib "\.z\.ws"
 syn match qLib "\.z\.x"
 syn match qLib "\.z\.z"
 syn match qLib "\.z\.zd"
@@ -651,7 +655,7 @@ syn match kHandle "\`:\{1,2}\([0-9a-zA-Z\\/.]\+:\=\)\{1,4}"
 syn match kPreproc /`[spgu]#/
 
 " highlight all the special names used when `XXX$ casting data 
-syn match kCast "\`\(boolean\|byte\|short\|int\|long\|real\|float\|char\|symbol\|timestamp\|month\|date\|datetime\|timespan\|time\|minute\|second\)\$\s*"
+syn match kCast "\`\(boolean\|byte\|short\|int\|long\|real\|guid\|float\|char\|symbol\|timestamp\|month\|date\|datetime\|timespan\|time\|minute\|second\)\$\s*"
 syn match kCast "\`\(year\|week\|mm\|dd\|hh\|ss\|uu\)\$\s*"
 
 " system cmd

@@ -109,6 +109,7 @@ syn keyword qFunction  raze
 syn keyword qFunction  read0
 syn keyword qFunction  read1
 syn keyword qFunction  reciprocal
+syn keyword qFunction  reval
 syn keyword qFunction  reverse
 syn keyword qFunction  rload
 syn keyword qFunction  rotate
@@ -116,6 +117,8 @@ syn keyword qFunction  rsave
 syn keyword qFunction  rtrim
 syn keyword qFunction  save
 syn keyword qFunction  scan
+syn keyword qFunction  scov
+syn keyword qFunction  sdev
 syn keyword qFunction  set
 syn keyword qFunction  show
 syn keyword qFunction  signum
@@ -124,6 +127,7 @@ syn keyword qFunction  string
 syn keyword qFunction  sublist
 syn keyword qFunction  sums
 syn keyword qFunction  sv
+syn keyword qFunction  svar
 syn keyword qFunction  system
 syn keyword qFunction  tables
 syn keyword qFunction  til

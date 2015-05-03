@@ -17,7 +17,7 @@ if main_syntax == 'k'
  else
   syn sync minlines=100
  endif
-endif   
+endif
 
 setlocal comments=:/,://
 
@@ -40,25 +40,25 @@ syn region kComment start="^\s*/" end="$" keepend excludenl contains=kTodo
 syn region kComment start="\s/" end="$" keepend excludenl contains=kTodo
 " multiline comment, bare \ means rest of file is comment
 syn region kComment start="^\\\\*\s*$" end="\%$" contains=kTodo,kExit
-" multiline comment start / .. end \ 
+" multiline comment start / .. end \
 syn region kComment start="^/\s*$" end="^\\\s*$" keepend excludenl contains=kTodo
 " emphasised comment
 syn region kSpecialComment start="^\s*//" end="$" keepend excludenl contains=kTodo
 syn region kSpecialComment start="\s//" end="$" keepend excludenl contains=kTodo
 
-" Numbers, dates etc 
+" Numbers, dates etc
 syn match kNumber "-\=\(\d\+\)\=\.\d*\(e[+-]\=\d\+\)\=[ef]\="
 syn match kNumber "-\=\d\+\(e[+-]\=\d\+\)\=[ijhfe]\="
 " Timestamp
 syn match kNumber "\d\{4}\.[01]\d\.[0123]\dT[012]\d\:[012345]\d:[012345]\d\(\.\d\+\)\="
-" Month 
+" Month
 syn match kNumber "\d\{4}\.[01]\dm"
 " Time
 syn match kNumber "[012]\d:[012345]\d\(:[012345]\d\(\.\d\+\)\=\)\="
 " Hex
 syn match kNumber "0x\x*"
 
-" special functions 0: 1: 2: 
+" special functions 0: 1: 2:
 syn match kFunction "\<[012]:"
 
 " Boolean
@@ -70,7 +70,7 @@ syn match kBoolean /[01]\+b/
 "Statement separator
 syn match kSeparator ";"
 
-" all the nulls and INFs 
+" all the nulls and INFs
 syn keyword kSpecial 0N 0W 0n 0w
 syn match kSpecial "-0[wW]"
 syn match kSpecial "-0W[defhijmnptuvz]"
@@ -78,11 +78,12 @@ syn match kSpecial "0[NW][defghijmnptuvz]"
 " GUIDs
 syn match kSpecial "[-[:xdigit:]]\{36}"
 
-" Identifiers not caught elsewhere 
+" Identifiers not caught elsewhere
 syn match kGlobal "\<\u[A-Z0-9]*\>"
 
 syn match kIdentifier "\<[a-zA-Z\.][a-zA-Z0-9\.]*\>"
 
+" k primitives from .Q.res
 syn keyword kPrimitive abs
 syn keyword kPrimitive acos
 syn keyword kPrimitive asin
@@ -101,9 +102,7 @@ syn keyword kPrimitive enlist
 syn keyword kPrimitive exec
 syn keyword kPrimitive exit
 syn keyword kPrimitive exp
-syn keyword kPrimitive from
 syn keyword kPrimitive getenv
-syn keyword kPrimitive i
 syn keyword kPrimitive if
 syn keyword kPrimitive in
 syn keyword kPrimitive insert
@@ -113,12 +112,14 @@ syn keyword kPrimitive log
 syn keyword kPrimitive max
 syn keyword kPrimitive min
 syn keyword kPrimitive prd
+syn keyword kPrimitive reval
 syn keyword kPrimitive select
 syn keyword kPrimitive setenv
 syn keyword kPrimitive sin
 syn keyword kPrimitive sqrt
 syn keyword kPrimitive ss
 syn keyword kPrimitive sum
+syn keyword kPrimitive svar
 syn keyword kPrimitive tan
 syn keyword kPrimitive update
 syn keyword kPrimitive var
@@ -127,97 +128,8 @@ syn keyword kPrimitive while
 syn keyword kPrimitive within
 syn keyword kPrimitive wsum
 syn keyword kPrimitive xexp
-syn keyword qLib \.Q\.A
-syn keyword qLib \.Q\.Cf
-syn keyword qLib \.Q\.IN
-syn keyword qLib \.Q\.L
-syn keyword qLib \.Q\.M
-syn keyword qLib \.Q\.MAP
-syn keyword qLib \.Q\.S
-syn keyword qLib \.Q\.V
-syn keyword qLib \.Q\.a
-syn keyword qLib \.Q\.a0
-syn keyword qLib \.Q\.a1
-syn keyword qLib \.Q\.a2
-syn keyword qLib \.Q\.addmonths
-syn keyword qLib \.Q\.addr
-syn keyword qLib \.Q\.an
-syn keyword qLib \.Q\.b6
-syn keyword qLib \.Q\.bv
-syn keyword qLib \.Q\.chk
-syn keyword qLib \.Q\.cn
-syn keyword qLib \.Q\.d0
-syn keyword qLib \.Q\.dd
-syn keyword qLib \.Q\.def
-syn keyword qLib \.Q\.dpft
-syn keyword qLib \.Q\.dpt
-syn keyword qLib \.Q\.dsftg
-syn keyword qLib \.Q\.dt
-syn keyword qLib \.Q\.en
-syn keyword qLib \.Q\.f
-syn keyword qLib \.Q\.fc
-syn keyword qLib \.Q\.ff
-syn keyword qLib \.Q\.fk
-syn keyword qLib \.Q\.fl
-syn keyword qLib \.Q\.fmt
-syn keyword qLib \.Q\.foo
-syn keyword qLib \.Q\.fp
-syn keyword qLib \.Q\.fs
-syn keyword qLib \.Q\.fsn
-syn keyword qLib \.Q\.ft
-syn keyword qLib \.Q\.fu
-syn keyword qLib \.Q\.gc
-syn keyword qLib \.Q\.hdpf
-syn keyword qLib \.Q\.host
-syn keyword qLib \.Q\.id
-syn keyword qLib \.Q\.ind
-syn keyword qLib \.Q\.j10
-syn keyword qLib \.Q\.j12
-syn keyword qLib \.Q\.k
-syn keyword qLib \.Q\.l
-syn keyword qLib \.Q\.n
-syn keyword qLib \.Q\.nA
-syn keyword qLib \.Q\.nct
-syn keyword qLib \.Q\.opt
-syn keyword qLib \.Q\.ord
-syn keyword qLib \.Q\.p
-syn keyword qLib \.Q\.p1
-syn keyword qLib \.Q\.p2
-syn keyword qLib \.Q\.par
-syn keyword qLib \.Q\.pcnt
-syn keyword qLib \.Q\.pm
-syn keyword qLib \.Q\.ps
-syn keyword qLib \.Q\.pt
-syn keyword qLib \.Q\.q0
-syn keyword qLib \.Q\.qa
-syn keyword qLib \.Q\.qb
-syn keyword qLib \.Q\.qd
-syn keyword qLib \.Q\.qe
-syn keyword qLib \.Q\.qm
-syn keyword qLib \.Q\.qp
-syn keyword qLib \.Q\.qt
-syn keyword qLib \.Q\.res
-syn keyword qLib \.Q\.s
-syn keyword qLib \.Q\.s1
-syn keyword qLib \.Q\.s2
-syn keyword qLib \.Q\.sw
-syn keyword qLib \.Q\.t
-syn keyword qLib \.Q\.t0
-syn keyword qLib \.Q\.tab
-syn keyword qLib \.Q\.tt
-syn keyword qLib \.Q\.tx
-syn keyword qLib \.Q\.ty
-syn keyword qLib \.Q\.ua
-syn keyword qLib \.Q\.v
-syn keyword qLib \.Q\.view
-syn keyword qLib \.Q\.vt
-syn keyword qLib \.Q\.w
-syn keyword qLib \.Q\.x0
-syn keyword qLib \.Q\.x1
-syn keyword qLib \.Q\.x10
-syn keyword qLib \.Q\.x12
-syn keyword qLib \.Q\.x2
-syn keyword qLib \.Q\.xy
+
+" fully qualified names from kx (single letter) namespaces
 syn keyword qLib \.h\.HOME
 syn keyword qLib \.h\.br
 syn keyword qLib \.h\.c0
@@ -266,13 +178,11 @@ syn keyword qLib \.h\.xmp
 syn keyword qLib \.h\.xs
 syn keyword qLib \.h\.xt
 syn keyword qLib \.j\.J
-syn keyword qLib \.j\.c
-syn keyword qLib \.j\.d
+syn keyword qLib \.j\.e
 syn keyword qLib \.j\.j
 syn keyword qLib \.j\.k
 syn keyword qLib \.j\.q
 syn keyword qLib \.j\.s
-syn keyword qLib \.j\.v
 syn keyword qLib \.o\.B0
 syn keyword qLib \.o\.C0
 syn keyword qLib \.o\.Cols
@@ -377,6 +287,7 @@ syn keyword qLib \.q\.raze
 syn keyword qLib \.q\.read0
 syn keyword qLib \.q\.read1
 syn keyword qLib \.q\.reciprocal
+syn keyword qLib \.q\.reval
 syn keyword qLib \.q\.reverse
 syn keyword qLib \.q\.rload
 syn keyword qLib \.q\.rotate
@@ -384,6 +295,8 @@ syn keyword qLib \.q\.rsave
 syn keyword qLib \.q\.rtrim
 syn keyword qLib \.q\.save
 syn keyword qLib \.q\.scan
+syn keyword qLib \.q\.scov
+syn keyword qLib \.q\.sdev
 syn keyword qLib \.q\.set
 syn keyword qLib \.q\.show
 syn keyword qLib \.q\.signum
@@ -392,6 +305,7 @@ syn keyword qLib \.q\.string
 syn keyword qLib \.q\.sublist
 syn keyword qLib \.q\.sums
 syn keyword qLib \.q\.sv
+syn keyword qLib \.q\.svar
 syn keyword qLib \.q\.system
 syn keyword qLib \.q\.tables
 syn keyword qLib \.q\.til
@@ -420,6 +334,98 @@ syn keyword qLib \.q\.xkey
 syn keyword qLib \.q\.xlog
 syn keyword qLib \.q\.xprev
 syn keyword qLib \.q\.xrank
+syn keyword qLib \.Q\.A
+syn keyword qLib \.Q\.Cf
+syn keyword qLib \.Q\.IN
+syn keyword qLib \.Q\.L
+syn keyword qLib \.Q\.M
+syn keyword qLib \.Q\.MAP
+syn keyword qLib \.Q\.S
+syn keyword qLib \.Q\.V
+syn keyword qLib \.Q\.Xf
+syn keyword qLib \.Q\.a
+syn keyword qLib \.Q\.a0
+syn keyword qLib \.Q\.a1
+syn keyword qLib \.Q\.a2
+syn keyword qLib \.Q\.addmonths
+syn keyword qLib \.Q\.addr
+syn keyword qLib \.Q\.an
+syn keyword qLib \.Q\.b6
+syn keyword qLib \.Q\.bv
+syn keyword qLib \.Q\.chk
+syn keyword qLib \.Q\.cn
+syn keyword qLib \.Q\.d0
+syn keyword qLib \.Q\.dd
+syn keyword qLib \.Q\.def
+syn keyword qLib \.Q\.dpft
+syn keyword qLib \.Q\.dpt
+syn keyword qLib \.Q\.dsftg
+syn keyword qLib \.Q\.dt
+syn keyword qLib \.Q\.en
+syn keyword qLib \.Q\.f
+syn keyword qLib \.Q\.fc
+syn keyword qLib \.Q\.ff
+syn keyword qLib \.Q\.fk
+syn keyword qLib \.Q\.fl
+syn keyword qLib \.Q\.fmt
+syn keyword qLib \.Q\.foo
+syn keyword qLib \.Q\.fp
+syn keyword qLib \.Q\.fs
+syn keyword qLib \.Q\.fsn
+syn keyword qLib \.Q\.ft
+syn keyword qLib \.Q\.fu
+syn keyword qLib \.Q\.gc
+syn keyword qLib \.Q\.hdpf
+syn keyword qLib \.Q\.host
+syn keyword qLib \.Q\.id
+syn keyword qLib \.Q\.ind
+syn keyword qLib \.Q\.j10
+syn keyword qLib \.Q\.j12
+syn keyword qLib \.Q\.k
+syn keyword qLib \.Q\.l
+syn keyword qLib \.Q\.n
+syn keyword qLib \.Q\.nA
+syn keyword qLib \.Q\.nct
+syn keyword qLib \.Q\.opt
+syn keyword qLib \.Q\.ord
+syn keyword qLib \.Q\.p
+syn keyword qLib \.Q\.p1
+syn keyword qLib \.Q\.p2
+syn keyword qLib \.Q\.par
+syn keyword qLib \.Q\.pcnt
+syn keyword qLib \.Q\.pm
+syn keyword qLib \.Q\.ps
+syn keyword qLib \.Q\.pt
+syn keyword qLib \.Q\.q0
+syn keyword qLib \.Q\.qa
+syn keyword qLib \.Q\.qb
+syn keyword qLib \.Q\.qd
+syn keyword qLib \.Q\.qe
+syn keyword qLib \.Q\.qm
+syn keyword qLib \.Q\.qp
+syn keyword qLib \.Q\.qt
+syn keyword qLib \.Q\.res
+syn keyword qLib \.Q\.s
+syn keyword qLib \.Q\.s1
+syn keyword qLib \.Q\.s2
+syn keyword qLib \.Q\.sw
+syn keyword qLib \.Q\.t
+syn keyword qLib \.Q\.t0
+syn keyword qLib \.Q\.tab
+syn keyword qLib \.Q\.tt
+syn keyword qLib \.Q\.tx
+syn keyword qLib \.Q\.ty
+syn keyword qLib \.Q\.ua
+syn keyword qLib \.Q\.v
+syn keyword qLib \.Q\.view
+syn keyword qLib \.Q\.vt
+syn keyword qLib \.Q\.w
+syn keyword qLib \.Q\.x0
+syn keyword qLib \.Q\.x1
+syn keyword qLib \.Q\.x10
+syn keyword qLib \.Q\.x12
+syn keyword qLib \.Q\.x2
+syn keyword qLib \.Q\.xy
 
 " hardcode the .z. functions (no way to get them automatically)
 syn match qLib "\.z\.D"
@@ -449,6 +455,7 @@ syn match qLib "\.z\.pd"
 syn match qLib "\.z\.pg"
 syn match qLib "\.z\.ph"
 syn match qLib "\.z\.pi"
+syn match qLib "\.z\.pm"
 syn match qLib "\.z\.po"
 syn match qLib "\.z\.pp"
 syn match qLib "\.z\.ps"
@@ -469,9 +476,9 @@ syn match qLib "\.z\.zd"
 
 "syn match kIdentifier "\<\a[a-zA-Z0-9]*\>"
 "syn match kIdentifier "\<[a-zA-Z\.][a-zA-Z0-9\.]*\>"
-syn match kPlaceholder "\<[xyz]\>" 
+syn match kPlaceholder "\<[xyz]\>"
 
-" Conditional and similar constructs 
+" Conditional and similar constructs
 syn keyword kConditional if
 syn match kConditional /$\[/me=e-1
 syn match kConditional /?\[/me=e-1
@@ -485,29 +492,29 @@ syn match Function /::/
 " Repeat
 syn keyword kRepeat do while
 
-" in a k script q) and s) switch to other languages, k) is unnecessary 
+" in a k script q) and s) switch to other languages, k) is unnecessary
 syn match kLang "^q)"
 syn match kLang "^s)"
 syn match kError "^k)"
 
 " symbols and specialcase file+connection handles
-syn match kSymbol "\(`\<[a-zA-Z0-9\.][a-zA-Z0-9_\.]*\>\)" 
+syn match kSymbol "\(`\<[a-zA-Z0-9\.][a-zA-Z0-9_\.]*\>\)"
 syn match kHandle "\`:\{1,2}\([0-9a-zA-Z\\/.]\+:\=\)\{1,4}"
 
 " attributes `p#, `g#, `s# and `u#
 syn match kPreproc /`[spgu]#/
 
-" highlight all the special names used when `XXX$ casting data 
+" highlight all the special names used when `XXX$ casting data
 syn match kCast "\`\(boolean\|byte\|short\|int\|long\|real\|guid\|float\|char\|symbol\|timestamp\|month\|date\|datetime\|timespan\|time\|minute\|second\)\$\s*"
 syn match kCast "\`\(year\|week\|mm\|dd\|hh\|ss\|uu\)\$\s*"
 
 " system cmd
 syn match kSyscmd "^\\\<\([12abBcCdeflopPrsStTuvwWxz_]\|cd\|ts\)\>"
 
-" String and handle embedded tabs and newlines correctly 
-syn region kString start=+"+ skip=+\\\\\|\\"+ end=+"+ keepend excludenl matchgroup=None contains=kSpecialChar 
+" String and handle embedded tabs and newlines correctly
+syn region kString start=+"+ skip=+\\\\\|\\"+ end=+"+ keepend excludenl matchgroup=None contains=kSpecialChar
 syn match kSpecialChar "\\[abcfnrtv\\]" contained
-" special singlechar string before $ 
+" special singlechar string before $
 syn match kCast /"\a"\$/
 
 if !exists("did_k_syntax_inits")

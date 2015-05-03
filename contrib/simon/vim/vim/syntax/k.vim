@@ -91,6 +91,7 @@ syn keyword kPrimitive atan
 syn keyword kPrimitive avg
 syn keyword kPrimitive bin
 syn keyword kPrimitive binr
+syn keyword kPrimitive by
 syn keyword kPrimitive cor
 syn keyword kPrimitive cos
 syn keyword kPrimitive cov
@@ -102,6 +103,7 @@ syn keyword kPrimitive enlist
 syn keyword kPrimitive exec
 syn keyword kPrimitive exit
 syn keyword kPrimitive exp
+syn keyword kPrimitive from
 syn keyword kPrimitive getenv
 syn keyword kPrimitive if
 syn keyword kPrimitive in
@@ -128,6 +130,9 @@ syn keyword kPrimitive while
 syn keyword kPrimitive within
 syn keyword kPrimitive wsum
 syn keyword kPrimitive xexp
+
+" catch invalid .?.?/?.??
+syn match kError "\.[a-zA-Z]\.[a-zA-Z]*"
 
 " fully qualified names from kx (single letter) namespaces
 syn keyword qLib \.h\.HOME
@@ -393,6 +398,7 @@ syn keyword qLib \.Q\.p1
 syn keyword qLib \.Q\.p2
 syn keyword qLib \.Q\.par
 syn keyword qLib \.Q\.pcnt
+syn keyword qLib \.Q\.pf
 syn keyword qLib \.Q\.pm
 syn keyword qLib \.Q\.ps
 syn keyword qLib \.Q\.pt
@@ -418,6 +424,7 @@ syn keyword qLib \.Q\.ty
 syn keyword qLib \.Q\.ua
 syn keyword qLib \.Q\.v
 syn keyword qLib \.Q\.view
+syn keyword qLib \.Q\.vp
 syn keyword qLib \.Q\.vt
 syn keyword qLib \.Q\.w
 syn keyword qLib \.Q\.x0

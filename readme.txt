@@ -1,6 +1,6 @@
 Vim Support for kdb+
 
-Copy <vimrc> to $HOME/.vimrc if you don't have one already, otherwise use it as a basis for cut'n'paste attacks. To use it properly you'll need to install a powerline font (google it) and the vim package manager NeoBundle. 
+Copy <vimrc> to $HOME/.vimrc if you don't have one already, otherwise use it as a basis for cut'n'paste attacks.
 
 Copy the files in the <vim> subdirectory to your vim home directory (probably $HOME/.vim)
 

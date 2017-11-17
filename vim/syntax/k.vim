@@ -99,6 +99,7 @@ syn keyword kPrimitive delete
 syn keyword kPrimitive dev
 syn keyword kPrimitive div
 syn keyword kPrimitive do
+syn keyword kPrimitive ema
 syn keyword kPrimitive enlist
 syn keyword kPrimitive exec
 syn keyword kPrimitive exit
@@ -115,6 +116,8 @@ syn keyword kPrimitive max
 syn keyword kPrimitive min
 syn keyword kPrimitive prd
 syn keyword kPrimitive reval
+syn keyword kPrimitive scov
+syn keyword kPrimitive sdev
 syn keyword kPrimitive select
 syn keyword kPrimitive setenv
 syn keyword kPrimitive sin
@@ -427,6 +430,7 @@ syn keyword qLib \.Q\.view
 syn keyword qLib \.Q\.vp
 syn keyword qLib \.Q\.vt
 syn keyword qLib \.Q\.w
+syn keyword qLib \.Q\.x
 syn keyword qLib \.Q\.x0
 syn keyword qLib \.Q\.x1
 syn keyword qLib \.Q\.x10
@@ -441,6 +445,7 @@ syn match qLib "\.z\.N"
 syn match qLib "\.z\.P"
 syn match qLib "\.z\.T"
 syn match qLib "\.z\.W"
+syn match qLib "\.z\.X"
 syn match qLib "\.z\.Z"
 syn match qLib "\.z\.a"
 syn match qLib "\.z\.ac"
@@ -448,6 +453,7 @@ syn match qLib "\.z\.b"
 syn match qLib "\.z\.bm"
 syn match qLib "\.z\.c"
 syn match qLib "\.z\.d"
+syn match qLib "\.z\.e"
 syn match qLib "\.z\.exit"
 syn match qLib "\.z\.f"
 syn match qLib "\.z\.h"

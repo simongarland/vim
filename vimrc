@@ -1,74 +1,59 @@
-set nocompatible
-filetype indent on
-filetype plugin on
+"set nocompatible
+filetype plugin indent on
 
 set autoread
 
-let mapleader = "_"
-let g:mapleader = "_"
+let mapleader="_"
+let maplocalleader="_"
+let g:mapleader="_"
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-" bundles
-NeoBundle "ajh17/Spacegray.vim"
-NeoBundle "altercation/vim-colors-solarized"
-NeoBundle "bling/vim-airline"
-NeoBundle "bling/vim-bufferline"
-NeoBundle "chrisbra/csv.vim"
-NeoBundle "clones/vim-genutils"
-NeoBundle "croaker/mustang-vim"
-NeoBundle "ervandew/supertab"
-NeoBundle "fatih/molokai"
-NeoBundle "fatih/vim-go"
-NeoBundle "jlanzarotta/bufexplorer"
-NeoBundle "jnurmine/Zenburn"
-NeoBundle "jonathanfilip/vim-lucius"
-NeoBundle "justinmk/vim-sneak"
-NeoBundle "luochen1990/rainbow"
-NeoBundle "mileszs/ack.vim"
-NeoBundle "nice/sweater"
-NeoBundle "noahfrederick/Hemisu"
-NeoBundle "rizzatti/dash.vim"
-NeoBundle "tpope/vim-surround"
-NeoBundle "vim-scripts/mru.vim"
-" individual vimscripts
-NeoBundle "Mark"
-NeoBundle "SelectBuf"
-call neobundle#end()
-" Installation check.
-NeoBundleCheck
+call plug#begin()
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'lifepillar/vim-solarized8'
+Plug 'romainl/flattened'
+Plug 'bling/vim-bufferline'
+Plug 'clones/vim-genutils'
+Plug 'ervandew/supertab'
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'kopischke/vim-fetch'
+Plug 'mileszs/ack.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'rizzatti/dash.vim'
+Plug 'rking/ag.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'tpope/vim-surround'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-scripts/mru.vim'
+Plug 'vim-scripts/print_bw.zip'
+call plug#end()
 
-syntax enable 
+syntax enable
+syntax sync minlines=20
 
-try
-    colorscheme spacegray
-catch
-endtry
-
-set background=dark
+set background=light
+colorscheme flattened_light
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions-=e
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#csv#enabled = 1
-let g:airline_theme='wombat'
+let g:lightline = { 'colorscheme': 'flattened_light', }
+let g:netrw_liststyle=3
 
-set autoindent
+let g:sneak#s_next = 1
+
 set backspace=indent,eol,start
+set backupdir=~/.vim/.backup//
 set complete+=k
-set copyindent
+set complete-=i
 set dictionary+=~/q/qcmds.txt
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim/.swp//
 set encoding=utf-8
 set expandtab
 set ffs=unix,dos,mac
@@ -83,14 +68,18 @@ set incsearch
 set langmenu=none
 set laststatus=2
 set lazyredraw
+set matchpairs+=<:>
+set matchtime=2
 set nobackup
 set nojoinspaces
 set noswapfile
 set nowritebackup
+set omnifunc=syntaxcomplete#Complete
 set pastetoggle=<F2>
 set path+=./**
 set printoptions=portrait:n,left:5pc
 set relativenumber
+set rtp+=/usr/local/opt/fzf
 set ruler
 set scrolloff=7
 set shiftwidth=2
@@ -98,14 +87,21 @@ set shortmess=atTI
 set showcmd
 set showmatch
 set showmode
+set sidescrolloff=5
 set smartcase
 set smarttab
 set softtabstop=2
 set switchbuf=usetab
+set tabpagemax=50
 set tabstop=2
 set tags=./tags;/
+set termguicolors
 set textwidth=79
+"set ttimeout
+"set ttimeoutlen=100
+"set timeoutlen=0
 set ttyfast
+set undodir=~/.vim/.undo//
 set viminfo+=!
 set visualbell
 set whichwrap+=<,>,h,l
@@ -113,15 +109,8 @@ set wildmenu
 set wildmode=list:longest
 set wrap
 
-set undodir=~/.vimundo
-if exists("&undodir")
-    set undofile          "Persistent undo! Pure money.
-    let &undodir=&directory
-    set undolevels=500
-    set undoreload=500
-endif
-
-nmap <silent> ,/ :nohlsearch<CR>
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -130,6 +119,9 @@ autocmd BufReadPost *
       \ if line("'\"") > 0 && line("'\"") <= line("$") |
       \   exe "normal g`\"" |
       \ endif
+
+au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 " my typos
 iab slect select
@@ -149,39 +141,54 @@ function! SyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
 
-" toggle between number nonumber and relativenumber from: source: http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-let g:relativenumber = 0
-function! ToogleRelativeNumber()
-  if g:relativenumber == 0
-    let g:relativenumber = 1
-    set norelativenumber
-    set number
-  elseif g:relativenumber == 1
-    let g:relativenumber = 2
-    set nonumber
-    set relativenumber
-  else
-    let g:relativenumber = 0
-    set nonumber
-    set norelativenumber
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
   endif
 endfunction
-map <F5> :call ToogleRelativeNumber()<cr>
 
-let g:rainbow_active=1
-let g:rainbow_load_separately = [
-  \ ['*', [['(',')'], ['\[','\]'], ['{','}']], '"[;:]"'],
-  \ ['*.{c,cpp,h,hpp}' , [['(',')'], ['\[','\]'], ['{','}']], '"\(;\|,\)"']
-  \ ]
-let g:rainbow_ctermfgs=['LightBlue','LightCyan','LightGreen','LightYellow','White','DarkCyan','DarkGreen','DarkYellow','DarkRed']
-let g:rainbow_guifgs=g:rainbow_ctermfgs
+set rtp+=/usr/local/opt/fzf
+au BufNewFile,BufRead .bash_functions call SetFileTypeSH("bash")
 
-" Delete trailing white space on save
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
-autocmd BufWrite *.k :call DeleteTrailingWS()
-autocmd BufWrite *.q :call DeleteTrailingWS()
+" Move between open buffers.
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nnoremap <leader>i  gg=G``
+
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
+" relative/absolute number toggling
+nnoremap <Leader>na :se nornu<CR>:se nu!<CR>
+nnoremap <Leader>nr :se nonu<CR>:se rnu!<CR>
+" toggle all 3 number settings in a loop
+nnoremap <Leader>nnn :set <c-r>={'00':'','01':'r','10':'nor'}[&rnu.&nu]<CR>nu<CR>
+
